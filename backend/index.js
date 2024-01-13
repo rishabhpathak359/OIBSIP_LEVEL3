@@ -4,7 +4,7 @@ const dotenv=require("dotenv").config()
 const app=express();
 const {mongoose} =require("mongoose");
 const corsOptions = {
-    origin: ['http://localhost:5173' , 'https://oibsip-level-3.vercel.app'],
+    origin: ['http://localhost:5173' , 'https://oibsip-level-3.vercel.app' ,'https://pizzeria-gilt.vercel.app'],
     credentials: true,
   };
   
