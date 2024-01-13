@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { inventoryItems, updateInventory } from '../utils/inventorySlice';
 import { addorder } from '../utils/orderSlice';
 import { selectUser } from '../utils/userSlice';
+import axios from 'axios';
 const CustomPizza = () => {
   const [selectedItems, setSelectedItems] = useState([]);
   const dispatch = useDispatch();
@@ -97,7 +98,7 @@ const CustomPizza = () => {
   
   const handleCheckout = async () => {
     try {
-      const response = await fetch('http://localhost:3000/payment/initiate', {
+      const response = await axios.post('/payment/initiate', {
         method: 'POST',
         body: JSON.stringify({ totalAmount: calculateTotalAmount() }),
         headers: {
@@ -151,7 +152,7 @@ const CustomPizza = () => {
 
   const capturePayment = async (paymentId, amount) => {
     try {
-      const response = await fetch('http://localhost:3000/payment/capture', {
+      const response = await axios.post('/payment/capture', {
         method: 'POST',
         body: JSON.stringify({ paymentId, amount }),
         headers: {

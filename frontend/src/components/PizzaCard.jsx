@@ -3,6 +3,7 @@ import { toast } from 'react-hot-toast';
 import { useDispatch, useSelector } from 'react-redux';
 import { additem, removeitem } from '../utils/cartSlice';
 import { selectUser } from '../utils/userSlice';
+import axios from 'axios';
 
 const PizzaCard = ({ pizza, fromCart, quantity }) => {
   const dispatch = useDispatch();
@@ -17,7 +18,7 @@ const PizzaCard = ({ pizza, fromCart, quantity }) => {
   };
   const handleCheckOut = async () => {
     try {
-      const response = await fetch('http://localhost:3000/payment/initiate', {
+      const response = await axios.post('/payment/initiate', {
         method: 'POST',
         body: JSON.stringify({ totalAmount:pizzaPrice}),
         headers: {
@@ -71,7 +72,7 @@ const PizzaCard = ({ pizza, fromCart, quantity }) => {
 
   const capturePayment = async (paymentId, amount) => {
     try {
-      const response = await fetch('http://localhost:3000/payment/capture', {
+      const response = await axios.post('/payment/capture', {
         method: 'POST',
         body: JSON.stringify({ paymentId, amount }),
         headers: {
