@@ -18,16 +18,10 @@ const PizzaCard = ({ pizza, fromCart, quantity }) => {
   };
   const handleCheckOut = async () => {
     try {
-      const response = await axios.post('/payment/initiate', {
-        method: 'POST',
-        body: JSON.stringify({ totalAmount:pizzaPrice}),
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
+      const response = await axios.post('/payment/initiate',{ totalAmount:pizzaPrice});
 
-      if (response.ok) {
-        const { order_id } = await response.json();
+      if (response.status==200) {
+        const { order_id } = response.data;
 
         // Loading the Razorpay library script dynamically
         const script = document.createElement('script');
@@ -72,17 +66,10 @@ const PizzaCard = ({ pizza, fromCart, quantity }) => {
 
   const capturePayment = async (paymentId, amount) => {
     try {
-      const response = await axios.post('/payment/capture', {
-        method: 'POST',
-        body: JSON.stringify({ paymentId, amount }),
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
+      const response = await axios.post('/payment/capture',{ paymentId, amount });
 
-      if (response.ok) {
-        const capturedPayment = await response.json();
-       const capturedPaymentData = await capturedPayment;
+      if (response.status==200) {
+       const capturedPaymentData =  response.data;
        dispatch(removeitem({ _id, itemName: pizza.name }));
         toast.success(`Payment Captured:₹${capturedPaymentData.amount/100}`);
       } else {

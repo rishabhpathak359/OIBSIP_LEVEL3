@@ -8,7 +8,7 @@ const corsOptions = {
     credentials: true,
   };
   
-  app.use(cors(corsOptions));
+  app.use(cors(corsOptions)); 
  mongoose.connect(process.env.MONGO_URL)
  .then(()=> console.log("DB connected"))
  .catch((err)=> console.log("DB Error" , err));
