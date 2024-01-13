@@ -15,7 +15,7 @@ import Admin from './pages/Admin';
 import PrivateRoute from './components/PrivateRoute'; 
 import OrderPage from './components/Order';
 
-axios.defaults.baseURL = 'http://localhost:3000';
+axios.defaults.baseURL = 'https://pizzeria-app.onrender.com/';
 axios.defaults.withCredentials = true;
 
 const App = () => {
