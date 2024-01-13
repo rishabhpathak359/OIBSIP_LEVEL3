@@ -13,7 +13,9 @@ const corsOptions = {
  .then(()=> console.log("DB connected"))
  .catch((err)=> console.log("DB Error" , err));
  app.use(express.json())
-
+app.get("/" , (req,res)=>{
+  res.send("Hello")
+})
 app.use("/" ,require("./routes/authRoutes"));
  
 app.listen("3000",()=>console.log("Server is listening on Port no. 3000"))  
