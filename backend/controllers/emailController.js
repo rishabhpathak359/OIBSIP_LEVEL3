@@ -12,7 +12,7 @@ const sendEmail =async (req, res) => {
       });
       const mailOptions = {
         from: process.env.ADMIN_EMAIL,
-        to: 'omnoosafe@emlhub.com',
+        to: 'rishbaskarabh359@gmail.com',
         subject: 'Inventory Warning',
         text: `Item ${itemName} is running low. Quantity is now ${quantity}.`,
       };
