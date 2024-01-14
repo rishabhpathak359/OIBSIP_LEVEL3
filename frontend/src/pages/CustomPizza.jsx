@@ -174,15 +174,19 @@ const CustomPizza = () => {
             <div key={category}>
               <h3 className='text-xl mb-2'>{category.charAt(0).toUpperCase() + category.slice(1)}</h3>
               {items.map((item, index) => (
-                    <button
-                      key={index}
-                      className={`${getCategoryColor(category)} text-white font-bold py-2 px-4 mx-2 rounded mt-5 md:mt-0`}
-                      onClick={() => handleSelection(category, item.name)}
-                      disabled={item.quantity === 0}
-                    >
-                      {item.name} - ₹{item.price} ({item.quantity} available)
-                    </button>
-                  ))}
+                  <button
+                    key={index}
+                    className={`${getCategoryColor(category)} text-white font-bold py-2 px-4 mx-2 rounded mt-5 md:mt-0`}
+                    onClick={() => handleSelection(category, item.name)}
+                    disabled={item.quantity === 0}
+                  >
+                    {item.name} - ₹{item.price} (
+                    <span className={`${item.quantity < 5 ? "text-red-900" : "text-white"}`}>
+                      {item.quantity}
+                    </span>{" "}
+                    available)
+                  </button>
+                ))}
             </div>
           ))}
         </div>

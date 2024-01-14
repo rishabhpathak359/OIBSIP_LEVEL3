@@ -6,6 +6,11 @@ export const Inventory ={
         "price": 6
       },
       {
+        "name": "Corny Crust",
+        "quantity": 8,
+        "price": 6
+      },
+      {
         "name": "Pan Pizza",
         "quantity": 8,
         "price": 7
