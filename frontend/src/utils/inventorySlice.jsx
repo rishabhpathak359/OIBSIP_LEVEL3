@@ -22,9 +22,10 @@ const inventorySlice=createSlice({
     reducers:{
    updateInventory:(state,action)=>{
     const { updatedInventory, itemUpdated } = action.payload;
-    console.log(action.payload)
     state.items = updatedInventory;
-    if (itemUpdated.quantity <=5)  {
+
+    console.log(state.items)
+    if ( itemUpdated.quantity <=5)  {
       sendEmailToAdminApi({
         itemName: itemUpdated.name,
         quantity: itemUpdated.quantity,

@@ -39,14 +39,16 @@ const Admin = () => {
         item.name === itemName ? { ...item, quantity: item.quantity + 1 } : item
       ),
     };
-    dispatch(updateInventory(updatedInventory));
+    const updatedQuantity = updatedInventory[category].find((item) => item.name === itemName)?.quantity;
+    dispatch(updateInventory({ updatedInventory, itemUpdated: { name: itemName, quantity: updatedQuantity } }));
   };
+  
   
 
   return (
     <div className="pt-28 px-5">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-      {Object.entries(inventory).map(([category, items]) => (
+      {inventory && Object.entries(inventory).map(([category, items]) => (
           <div key={category} className="mb-8 relative">
             <h3 className="text-2xl mb-2 font-bold">{category.charAt(0).toUpperCase() + category.slice(1)}</h3>
             {items.map((item, index) => (
